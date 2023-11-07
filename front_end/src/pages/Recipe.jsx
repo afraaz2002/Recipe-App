@@ -2,6 +2,7 @@
 import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { Link, useParams } from 'react-router-dom';
+import axios from "axios";
 
 function Recipe() {
 
@@ -20,12 +21,26 @@ function Recipe() {
     setInfo(recipeInfo);
   }
 
+  const postRecipe = async (event) => {
+    alert("Added to favourites!");
+    event.preventDefault();
+    try{
+
+       await axios.post("http://localhost:5000/favourites",{id:params.name});
+       
+    }catch(err){
+      console.log(err);
+    }
+    
+  }
+
   return (
 
     <InfoWrapper>
       <div>
         <h2>{info.title}</h2>
         <img src={info.image} alt="" style={{ width: "34rem" }} />
+        <button onClick={postRecipe}>Add to favourites</button>
         {/* {console.log(info.extendedIngredients)} */}
         {/* { <ul>
                     {info.extendedIngredients.map((ingredient) => {
@@ -71,6 +86,17 @@ const InfoWrapper = styled.div`
   ul{
     margin-top:2rem;
   }
+
+  button{
+    background-color:#0dd643;
+    color:white;
+    margin:2rem 0;
+    padding:0.5rem 1rem;
+    font-size:1.2rem;
+    border:none;
+    border-radius:5px;
+  }
+
 `
 
 

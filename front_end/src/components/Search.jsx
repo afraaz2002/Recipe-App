@@ -14,19 +14,33 @@ function Search() {
 
     return (
         <Container>
-            <Link to={"/"}>
+            <Left_section>
+            <Link to={"/"} style={{ textDecoration: 'none' }}>
                 <Logo>RecipesTime</Logo>
             </Link>
+            
             <FormStyle onSubmit={submitHandler}>
                 <input type="text" placeholder="Search for any food item..." value={input} onChange={(e) => setInput(e.target.value)} />
             </FormStyle>
+            </Left_section>
+
+            <Link to={"/favourites"} style={{ textDecoration: 'none' }}>
+            <h2>Your Favourites</h2>
+            </Link>
         </Container>
     )
 }
 
+const Left_section = styled.div`
+display:flex;
+align-items:center;
+gap:3rem;
+width:70%;
+`
+
 const FormStyle = styled.form`
  margin:2rem 0;
- width:40%;
+ width:60%;
  input{
     width:100%;
     border:none;
@@ -50,7 +64,23 @@ const Logo = styled.a`
 
 const Container = styled.div`
 display:flex;
-gap:3rem;
 align-items:center;
+justify-content:space-between;
+
+h2{
+    color:white;
+    background-color:#fcba03;
+    padding:0.5rem 1rem;
+    border-radius:15px;
+    font-size:1.4rem;
+    text-decoration:none;
+    width:max-content;
+
+    &:hover{
+        scale:1.04;
+        cursor:pointer;
+    }
+}
+
 `
 export default Search
