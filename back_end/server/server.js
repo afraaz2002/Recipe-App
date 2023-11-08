@@ -31,7 +31,7 @@ app.post("/favourites", async (req, res) => {
 
     if (findRecipes == null) {
 
-      let favouriteRecipe = await axios.get(`https://api.spoonacular.com/recipes/${id}/information?apiKey=eb6bf1f7dfc14eef8d8a1f8510c51bdf`);
+      let favouriteRecipe = await axios.get(`https://api.spoonacular.com/recipes/${id}/information?apiKey=9943321b4027415d94f69b8badada359`);
 
       const recipe = new RecipeModel({
         recipeId: id,
@@ -42,6 +42,16 @@ app.post("/favourites", async (req, res) => {
       await recipe.save();
     }
 
+  } catch (error) {
+    console.error("Failed to make request:", error.message);
+  }
+})
+
+app.post("/delete", async (req, res) => {
+  try {
+    let id = req.body.id;
+    console.log(id)
+    await RecipeModel.findByIdAndDelete(id);
   } catch (error) {
     console.error("Failed to make request:", error.message);
   }

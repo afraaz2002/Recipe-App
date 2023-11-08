@@ -1,7 +1,7 @@
 
 import { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import axios from "axios";
 
 function Recipe() {
@@ -23,11 +23,9 @@ function Recipe() {
 
   const postRecipe = async (event) => {
     alert("Added to favourites!");
-    event.preventDefault();
+ 
     try{
-
-       await axios.post("http://localhost:5000/favourites",{id:params.name});
-       
+       await axios.post("http://localhost:5000/favourites",{id:params.name});  
     }catch(err){
       console.log(err);
     }
